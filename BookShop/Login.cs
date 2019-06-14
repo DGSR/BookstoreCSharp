@@ -10,7 +10,7 @@ namespace BookShop
         public Login()
         {
             InitializeComponent();
-            LoginBox.Select();
+            LoginBox.Select();// Чтобы автоматически был сфокусирован на логине
         }
 
         private void LoginSubmit_Click(object sender, EventArgs e)
@@ -19,12 +19,13 @@ namespace BookShop
             {
                 MessageBox.Show("Please Enter Login and Password");
                 return;
-            }           
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = @"(LocalDB)\MSSQLLocalDB";
-            builder.AttachDBFilename = Bookstore.path;
-            builder.IntegratedSecurity = true;
-            
+            }
+            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+            {
+                DataSource = @"(LocalDB)\MSSQLLocalDB",
+                AttachDBFilename = Bookstore.path,
+                IntegratedSecurity = true
+            };
             IDbConnection connection = new SqlConnection(builder.ConnectionString);
             connection.Open();
 
@@ -45,7 +46,6 @@ namespace BookShop
                 pas[a] = pass.ToString();
                 a++;
                 // Отладка1: s += login+" " + pass+ " \n";
-
             }
             // Отладка1: MessageBox.Show(s);
             reader.Close();

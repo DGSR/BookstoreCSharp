@@ -114,10 +114,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\base-islamov.mdf" />
-    <Content Include="Data\base-islamov_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="img\background34.png" />
     <None Include="img\background60.png" />
     <None Include="img\background48.png" />

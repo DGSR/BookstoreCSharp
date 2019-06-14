@@ -25,40 +25,24 @@ namespace BookShopClient
 
         static void SendMessageFromSocket(int port)
         {
-            // Буфер для входящих данных
+            // буфер
             byte[] bytes = new byte[1024];
-
-            // Соединяемся с удаленным устройством
-
-            // Устанавливаем удаленную точку для сокета
+            // конфигурация
             IPHostEntry ipHost = Dns.GetHostEntry("localhost");
             IPAddress ipAddr = ipHost.AddressList[0];
             IPEndPoint ipEndPoint = new IPEndPoint(ipAddr, port);
-
             Socket sender = new Socket(ipAddr.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-
-            // Соединяем сокет с удаленной точкой
+            // соединение
             sender.Connect(ipEndPoint);
-
-            Console.Write("Enter a Message: ");
+            Console.Write("You: ");
             string message = Console.ReadLine();
-
-            Console.WriteLine("Socket connecting with {0} ", sender.RemoteEndPoint.ToString());
             byte[] msg = Encoding.UTF8.GetBytes(message);
-
-            // Отправляем данные через сокет
             int bytesSent = sender.Send(msg);
-
-            // Получаем ответ от сервера
             int bytesRec = sender.Receive(bytes);
-
-            Console.WriteLine("\nServer Reply: {0}\n\n", Encoding.UTF8.GetString(bytes, 0, bytesRec));
-
-            // Используем рекурсию для неоднократного вызова SendMessageFromSocket()
+            Console.WriteLine("Support: {0}", Encoding.UTF8.GetString(bytes, 0, bytesRec));
+            // рекурсия для продолжения работы, условие стоп слово
             if (message.IndexOf("<TheEnd>") == -1)
                 SendMessageFromSocket(port);
-
-            // Освобождаем сокет
             sender.Shutdown(SocketShutdown.Both);
             sender.Close();
         }

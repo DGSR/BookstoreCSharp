@@ -442,6 +442,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(914, 400);
+            this.MinimumSize = new System.Drawing.Size(914, 400);
             this.Name = "Bookstore";
             this.ShowInTaskbar = false;
             this.Text = "Bookstore";
