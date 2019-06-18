@@ -1,0 +1,7 @@
+C:\Users\herma\source\repos\BookShop\BookShopServer\bin\Debug\BookShopServer.exe.config
+C:\Users\herma\source\repos\BookShop\BookShopServer\bin\Debug\BookShopServer.exe
+C:\Users\herma\source\repos\BookShop\BookShopServer\bin\Debug\BookShopServer.pdb
+C:\Users\herma\source\repos\BookShop\BookShopServer\obj\Debug\BookShopServer.csprojAssemblyReference.cache
+C:\Users\herma\source\repos\BookShop\BookShopServer\obj\Debug\BookShopServer.csproj.CoreCompileInputs.cache
+C:\Users\herma\source\repos\BookShop\BookShopServer\obj\Debug\BookShopServer.exe
+C:\Users\herma\source\repos\BookShop\BookShopServer\obj\Debug\BookShopServer.pdb
