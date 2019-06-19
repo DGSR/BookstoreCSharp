@@ -406,8 +406,6 @@
             // MyOrdersDGV
             // 
             this.MyOrdersDGV.AllowUserToAddRows = false;
-            this.MyOrdersDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.MyOrdersDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.MyOrdersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MyOrdersDGV.Location = new System.Drawing.Point(3, 32);
             this.MyOrdersDGV.Name = "MyOrdersDGV";
