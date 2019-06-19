@@ -1,13 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.Sql;
-using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -121,7 +116,7 @@ namespace BookShop
         private void GenreBookSelector_SelectedValueChanged(object sender, EventArgs e)// №2
         {
             CategoryBookSelector.Items.Clear();
-            string query = "EXEC authorp @gen= '" + GenreBookSelector.SelectedItem.ToString() + "'";
+            string query = "EXEC genrep @gen= '" + GenreBookSelector.SelectedItem.ToString() + "'";
             string[] mess = Send(query);
             for (int i = 0; i < mess.Length; i++)
                 CategoryBookSelector.Items.Add(mess[i]);
@@ -132,7 +127,7 @@ namespace BookShop
         private void PublisherBookSelector_SelectedValueChanged(object sender, EventArgs e)//№3
         {
             CategoryBookSelector.Items.Clear();
-            string query = "EXEC authorp @pub= '" + PublisherBookSelector.SelectedItem.ToString() + "'";
+            string query = "EXEC publishp @pub= '" + PublisherBookSelector.SelectedItem.ToString() + "'";
             string[] mess = Send(query);
             for (int i = 0; i < mess.Length; i++)
                 CategoryBookSelector.Items.Add(mess[i]);
@@ -142,7 +137,6 @@ namespace BookShop
 
         private void FileMenuExit_Click(object sender, EventArgs e)//Выход
         {
-            //sender1.Close();
             Close();
         }
 
@@ -210,29 +204,25 @@ namespace BookShop
         {
             //Кроме отрисовки панели, загружаются данные в DataGridView
             MyOrdersPanel.Visible = true;
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder
+
+            string query = "EXEC user_orders @usr= '" + loguser + "'";
+            string[] mess = Send(query);
+            MyOrdersDGV.ColumnCount = 8;
+            MyOrdersDGV.Columns[0].Name = "Order ID";
+            MyOrdersDGV.Columns[1].Name = "Order Date";
+            MyOrdersDGV.Columns[2].Name = "Amount";
+            MyOrdersDGV.Columns[3].Name = "Book";
+            MyOrdersDGV.Columns[4].Name = "Author";
+            MyOrdersDGV.Columns[5].Name = "Genre";
+            MyOrdersDGV.Columns[6].Name = "Publisher";
+            MyOrdersDGV.Columns[7].Name = "Publication Year";
+            for (int i=0;i<mess.Length;i++)
             {
-                DataSource = @"(LocalDB)\MSSQLLocalDB",
-                AttachDBFilename = path,
-                IntegratedSecurity = true
-            };
-            SqlConnection connection = new SqlConnection(builder.ConnectionString);
-            connection.Open();
-            SqlParameter sqlParameter = new SqlParameter("@usr", SqlDbType.VarChar, 255)
-            {
-                Value = loguser
-            };
-            SqlCommand command = new SqlCommand("user_orders");           
-            command.CommandType = CommandType.StoredProcedure;
-            command.Connection = connection;
-            command.Parameters.Add(sqlParameter);
-            command.Prepare();
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            MyOrdersDGV.DataSource = table;
-            command.Dispose();
-            connection.Close();
+                MyOrdersDGV.Rows.Add(mess[i].Split(','));
+            }
+            MyOrdersDGV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader ;
+            MyOrdersDGV.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
         }
 
         private void SubmitOrder_Click(object sender, EventArgs e)// Совершение заказа

@@ -27,7 +27,7 @@ namespace BookShop
 
             for (int i = 0; i < mess.Length; i++)
             {
-                mess[i]=mess[i].Remove(mess[i].LastIndexOf(','), 1);
+                //mess[i]=mess[i].Remove(mess[i].LastIndexOf(','), 1);
                 log[i] = mess[i].Substring(0, mess[i].IndexOf(','));
                 pas[i] = mess[i].Substring((mess[i].IndexOf(',')+1));
             }

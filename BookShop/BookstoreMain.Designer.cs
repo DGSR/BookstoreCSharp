@@ -317,6 +317,7 @@
             this.BookChoicePanel.Name = "BookChoicePanel";
             this.BookChoicePanel.Size = new System.Drawing.Size(225, 317);
             this.BookChoicePanel.TabIndex = 16;
+            this.BookChoicePanel.Visible = false;
             // 
             // PickedBooksPanel
             // 
@@ -405,8 +406,6 @@
             // MyOrdersDGV
             // 
             this.MyOrdersDGV.AllowUserToAddRows = false;
-            this.MyOrdersDGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
-            this.MyOrdersDGV.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.MyOrdersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MyOrdersDGV.Location = new System.Drawing.Point(3, 32);
             this.MyOrdersDGV.Name = "MyOrdersDGV";
